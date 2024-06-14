@@ -1,0 +1,17 @@
+/.idea
+/fma
+*.mp3
+*.wav
+*.flac
+/pretrained_models
+*.7z
+*.zip
+
+/data/features.csv
+/data/not_found.pickle
+/data/raw_albums.csv
+/data/tracks.csv
+/data/features.csv
+/data/raw_albums.csv
+/data/checksums
+/data/raw_tracks.csv
