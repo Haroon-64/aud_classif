@@ -1,10 +1,9 @@
-!pip install torch torchaudio spleeter
+
 
 import torch
 import torchaudio
 from spleeter.separator import Separator
 import os
-from google.colab import files
 
 def separate_instruments(input_file, output_dir):
     # Create a Separator object
