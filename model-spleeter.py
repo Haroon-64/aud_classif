@@ -14,13 +14,10 @@ def separate_instruments(input_file, output_dir):
 
     print(f"Separation complete. Output files saved in {output_dir}")
 
-# Upload file
-uploaded = files.upload()
 
-# Get filename and set up output directory
-input_file = next(iter(uploaded))
-output_dir = "/content/output"
-!mkdir -p {output_dir}
+input_file = 'path'
+output_dir = "path"
+
 
 print(f"Input file: {input_file}")
 print(f"Output directory: {output_dir}")
@@ -28,6 +25,4 @@ print(f"Output directory: {output_dir}")
 # Run separation
 separate_instruments(input_file, output_dir)
 
-# Zip and download results
-!zip -r /content/separated_audio.zip {output_dir}
-files.download("/content/separated_audio.zip")
+
