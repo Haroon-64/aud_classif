@@ -2,3 +2,4 @@
 
 - classify audio by seperating channels using nussl/spleeter/demucs
  -  `https://github.com/facebookresearch/demucs/tree/main`
+- Seperate others manually using U-net or nussl
