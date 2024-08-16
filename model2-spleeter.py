@@ -3,6 +3,7 @@ import os
 import time
 import threading
 import sys
+import subprocess
 
 def get_file_size(file_path):
     return os.path.getsize(file_path)
@@ -32,21 +33,32 @@ def animate_progress(stop, file_path):
         sys.stdout.flush()
         time.sleep(1)
 
-def separate_instruments(input_dir, output_dir):
+def convert_audio(input_file, output_file, format='mp3', quality='128k'):
+    command = [
+        'ffmpeg', '-i', input_file,
+        '-ab', quality,
+        output_file
+    ]
+    subprocess.run(command, check=True)
+
+def separate_instruments(input_dir, output_dir, output_format='mp3', quality='128k'):
     separator = Separator('spleeter:5stems')
     os.makedirs(output_dir, exist_ok=True)
     audio_files = [f for f in os.listdir(input_dir) if f.endswith(('.mp3', '.wav', '.flac', '.ogg'))]
+    audio_files.sort(key=lambda x: int(x.split('.')[0]))  # Sort numerically
+
     total_files = len(audio_files)
 
     for index, audio_file in enumerate(audio_files, 1):
         input_path = os.path.join(input_dir, audio_file)
-        file_output_dir = os.path.join(output_dir, os.path.splitext(audio_file)[0])
+        base_name = os.path.splitext(audio_file)[0]
+        file_output_dir = os.path.join(output_dir, base_name)
 
         print(f"\nProcessing file {index} of {total_files}: {audio_file}")
         print("Separating: ")
 
         stop_animation = False
-        animation_thread = threading.Thread(target=animate_progress, args=(lambda : stop_animation, input_path))
+        animation_thread = threading.Thread(target=animate_progress, args=(lambda: stop_animation, input_path))
         animation_thread.start()
 
         start_time = time.time()
@@ -55,6 +67,17 @@ def separate_instruments(input_dir, output_dir):
 
         stop_animation = True
         animation_thread.join()
+
+        for root, _, files in os.walk(file_output_dir):
+            for file in files:
+                if file.endswith(('.mp3', '.wav')):
+                    stem_name = file.split('.')[0]  # Changed from '_' to '.'
+                    new_name = f"{base_name}_{stem_name}.{output_format}"
+                    input_file_path = os.path.join(root, file)
+                    output_file_path = os.path.join(root, new_name)
+
+                    convert_audio(input_file_path, output_file_path, format=output_format, quality=quality)
+                    os.remove(input_file_path)
 
         duration = end_time - start_time
         print(f"\nSeparation complete for {audio_file}.")
@@ -65,9 +88,7 @@ def separate_instruments(input_dir, output_dir):
     print(f"\nAll separations complete. Total files processed: {total_files}")
     print(f"Output files saved in {output_dir}")
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     input_dir = "/Users/malikmubarak/Desktop/AudioClassification/input-samples"
-    output_dir = "/Users/malikmubarak/Desktop/AudioClassification/outputs "
-
+    output_dir = "/Users/malikmubarak/Desktop/AudioClassification/outputs"
     separate_instruments(input_dir, output_dir)
-
