@@ -16,3 +16,5 @@
 /data/checksums
 /data/raw_tracks.csv
 /.sep
+/data
+/.notes
