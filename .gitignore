@@ -16,5 +16,6 @@
 /data/checksums
 /data/raw_tracks.csv
 /.sep
-/data
+/data/Lyrics
+*.tar.gz
 /.notes
