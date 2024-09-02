@@ -2,4 +2,41 @@
 
 - classify audio by seperating channels using nussl/spleeter/demucs
  -  `https://github.com/facebookresearch/demucs/tree/main`
-- Seperate others manually using U-net or nussl
+- Seperate others manually using U-net or nussl or filtering
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+There is also files from MillionSongSubset in h5
+http://millionsongdataset.com
+
+
+plus Classical instruments   which seem to be blank?
+
+
+
+
+useful other sets
+
+
+https://zenodo.org/records/4599666    -  slakh dataset 107Gb
+
+
+
+https://sigsep.github.io/datasets/musdb.html#musdb18-hq-uncompressed-wav     -  22.7Gb
+
+
+https://github.com/lukewys/chamber-ensemble-generator#dataset-download    -  upto 4Tb

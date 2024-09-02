@@ -6,7 +6,9 @@
 /pretrained_models
 *.7z
 *.zip
-
+*.h5
+*.pickle
+*.png
 /data/features.csv
 /data/not_found.pickle
 /data/raw_albums.csv
