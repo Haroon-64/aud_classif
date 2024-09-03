@@ -9,14 +9,7 @@
 *.h5
 *.pickle
 *.png
-/data/features.csv
-/data/not_found.pickle
-/data/raw_albums.csv
-/data/tracks.csv
-/data/features.csv
-/data/raw_albums.csv
-/data/checksums
-/data/raw_tracks.csv
+/data
 /.sep
 /data/Lyrics
 *.tar.gz
