@@ -14,3 +14,5 @@
 /data/Lyrics
 *.tar.gz
 /.notes
+*.pyc
+/.vscode
