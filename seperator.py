@@ -88,7 +88,32 @@ def separate_instruments(input_dir, output_dir, output_format='mp3', quality='12
     print(f"\nAll separations complete. Total files processed: {total_files}")
     print(f"Output files saved in {output_dir}")
 
+def separate_instruments_single_file(input_file, output_dir, output_format='mp3', quality='128k'):
+  separator = Separator('spleeter:5stems')
+  base_name = os.path.splitext(os.path.basename(input_file))[0]
+  file_output_dir = os.path.join(output_dir, base_name)
+  
+  os.makedirs(file_output_dir, exist_ok=True)
+  
+  # Separate the input file
+  separator.separate_to_file(input_file, file_output_dir)
+
+  for root, _, files in os.walk(file_output_dir):
+    for file in files:
+      if file.endswith(('.mp3', '.wav')):
+        stem_name = file.split('.')[0]
+        new_name = f"{base_name}_{stem_name}.{output_format}"
+        input_file_path = os.path.join(root, file)
+        output_file_path = os.path.join(root, new_name)
+
+        convert_audio(input_file_path, output_file_path, format=output_format, quality=quality)
+        os.remove(input_file_path)
+
+  return file_output_dir
+
+
 if __name__ == '__main__':
-    input_dir = "/Users/malikmubarak/Desktop/AudioClassification/input-samples"
-    output_dir = "/Users/malikmubarak/Desktop/AudioClassification/outputs"
+
+    input_dir = os .path.join(os.getcwd + "inputsamples")
+    output_dir = os .path.join(os.getcwd + "outputdir")
     separate_instruments(input_dir, output_dir)
