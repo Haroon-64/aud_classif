@@ -16,3 +16,4 @@
 /.notes
 *.pyc
 /.vscode
+/.venv
