@@ -42,7 +42,7 @@ def convert_audio(input_file, output_file, format='mp3', quality='128k'):
     subprocess.run(command, check=True)
 
 def separate_instruments(input_dir, output_dir, output_format='mp3', quality='128k'):
-    separator = Separator('spleeter:5stems')
+    separator = Separator('spleeter:5stems')  # this will download the model if deployed in a container and give https error
     os.makedirs(output_dir, exist_ok=True)
     audio_files = [f for f in os.listdir(input_dir) if f.endswith(('.mp3', '.wav', '.flac', '.ogg'))]
     audio_files.sort(key=lambda x: int(x.split('.')[0]))  # Sort numerically
@@ -89,7 +89,7 @@ def separate_instruments(input_dir, output_dir, output_format='mp3', quality='12
     print(f"Output files saved in {output_dir}")
 
 def separate_instruments_single_file(input_file, output_dir, output_format='mp3', quality='128k'):
-  separator = Separator('spleeter:5stems')
+  separator = Separator('config.json')
   base_name = os.path.splitext(os.path.basename(input_file))[0]
   file_output_dir = os.path.join(output_dir, base_name)
   
@@ -117,3 +117,6 @@ if __name__ == '__main__':
     input_dir = os .path.join(os.getcwd + "inputsamples")
     output_dir = os .path.join(os.getcwd + "outputdir")
     separate_instruments(input_dir, output_dir)
+
+
+#  pyinstaller -D --add-data seperator.py --add-data pretrained_models app.py

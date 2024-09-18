@@ -3,7 +3,7 @@
 *.mp3
 *.wav
 *.flac
-/pretrained_models
+
 *.7z
 *.zip
 *.h5
@@ -17,3 +17,5 @@
 *.pyc
 /.vscode
 /.venv
+/build
+/dist
