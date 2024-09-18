@@ -6,7 +6,7 @@
 
 
 
-# try the app deployed at [huggingface🤗](https://huggingface.co/spaces/audCLF/audiosep)
+# try the app deployed at [huggingface🤗](https://huggingface.co/spaces/audCLF/audiosep).  currently buggy
 
 
 
