@@ -20,4 +20,5 @@
 /.sep
 /data/Lyrics
 *.tar.gz
-/.notes
+/.notes\
+.venv/
