@@ -78,7 +78,7 @@ tensorflow-estimator==2.9.0
 tensorflow-io-gcs-filesystem==0.34.0
 termcolor==2.4.0
 toml==0.10.2
-tornado==6.4.1
+tornado==6.4.2
 typer==0.3.2
 typing_extensions==4.12.2
 urllib3==2.2.3
